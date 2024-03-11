@@ -9,6 +9,14 @@ class Board:
                       for row in range(size)]
         self._name = name
 
+    def __str__(self):
+        s = ""
+        for y in range(self._size):
+            for x in range(self._size):
+                s += str(self._grid[y][x])
+            s += "\n"
+        return s
+
     def step(self):
         '''Applies game logic to the grid once.'''
         neigbour_grid = self._neighbour_grid()
@@ -17,10 +25,10 @@ class Board:
 
     def manipulate(self, x: int, y: int):
         '''Turns cell (x, y) to 0 if it's 1 or to 1 if it's 0.'''
-        if self._grid[x][y]:
-            self._grid[x][y] = 0
+        if self._grid[y][x]:
+            self._grid[y][x] = 0
         else:
-            self._grid[x][y] = 1
+            self._grid[y][x] = 1
         return 1
 
     def get_grid(self):
@@ -50,8 +58,8 @@ class Board:
                 for j in range(-1, 2):
                     # Skips columns that are not on the grid.
                     # Also skips the cell itself.
-                    if not (y + j < 0 or y + j >= self._size or (x == 0 and y == 0)):
-                        neighbours += self._grid[x + j][y + i]
+                    if not (y + j < 0 or y + j >= self._size or (i == 0 and j == 0)):
+                        neighbours += self._grid[x + i][y + j]
         return neighbours
 
     def _neighbour_grid(self):

@@ -1,8 +1,0 @@
-On joku käyttöliittymä josta voit mennä sovellukseen tai sitten pois? emt.
-Olis tosi hienoa jos lopullisessa sovelluksessa ois kunkin armejjan omilla puolillaan ruutua
-Keskellä olis erinäisiä aluksenosia jota vois sitte dragata omien alusten päälle
-Tässä ois kiva jos niille ois hakutoiminto joka hakis realiajassa
-
-Alkukantainen sovellus vois olla semmonen jossa merkataan aluksen tietokone ja kilvet vain käyttäjän ilmoittamilla luvuilla.
-Samoin initive ja tykkien jakauma voidaan merkitä näin (Menee vähän vaikeeks)
-Harkitaa veilä prokkista ilman erillisiä osia tuntuu olevan liian simppeli kun taas kaikkien osien määrittely saattaa olla vaivanloista.

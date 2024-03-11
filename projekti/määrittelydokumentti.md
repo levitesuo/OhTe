@@ -1,4 +1,4 @@
-###Jhon Conways game of life
+### Jhon Conways game of life
 - On käyttäjiä
 - Käyttäjä voi tallentaa pelin tilan tietokantaan netissä.
 - Käyttäjä voi ladata pelin tilan tietokannasta.

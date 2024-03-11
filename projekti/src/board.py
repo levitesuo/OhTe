@@ -52,14 +52,17 @@ class Board:
     def _count_neighbours(self, x: int, y: int):
         '''Counts the amount of neighbours cell (x, y) has.'''
         neighbours = 0
-        for i in range(-1, 2):
-            # Skips rows that are not on the grid
-            if not (x + i < 0 or x + i >= self._size):
-                for j in range(-1, 2):
-                    # Skips columns that are not on the grid.
-                    # Also skips the cell itself.
-                    if not (y + j < 0 or y + j >= self._size or (i == 0 and j == 0)):
-                        neighbours += self._grid[x + i][y + j]
+        directions = [(-1, -1), (-1, 0), (-1, 1), (0, -1),
+                      (0, 1), (1, -1), (1, 0), (1, 1)]
+
+        for dx, dy in directions:
+            new_x = x + dx
+            new_y = y + dy
+
+            # Check if neighbor is within grid bounds and not the cell itself
+            if 0 <= new_x < self._size and 0 <= new_y < self._size:
+                neighbours += self._grid[new_x][new_y]
+
         return neighbours
 
     def _neighbour_grid(self):

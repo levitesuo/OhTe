@@ -1,0 +1,93 @@
+commit d331d140e104550e7b70839ab60736a04d68e02c
+Author: levitesuo <leevi.suotula@gmail.com>
+Date:   Tue Mar 14 12:03:46 2023 +0200
+
+    file2 -> file22 & rm file1
+
+ tiedostoja/file2.txt                 | 0
+ tiedostoja/{file1.txt => file22.txt} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 4c36d5e8dee0df908520735cd62683f00f05d356
+Author: levitesuo <leevi.suotula@gmail.com>
+Date:   Tue Mar 14 11:55:51 2023 +0200
+
+    Luodaan tehtävän 11 mukaiset teidostot
+
+ tiedostoja/file1.txt | 0
+ tiedostoja/file2.txt | 0
+ tiedostoja/file3.txt | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 50c419fb55fef5c6d7609b2f8eba038b2f3d8d32
+Author: levitesuo <leevi.suotula@gmail.com>
+Date:   Tue Mar 14 11:55:07 2023 +0200
+
+    clearing up git status
+
+ eka.txt | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit f2fc637bbf430df482efb06d508d80b93b81adbb
+Author: levitesuo <leevi.suotula@gmail.com>
+Date:   Tue Mar 14 11:49:26 2023 +0200
+
+    Muutoksia
+
+ kolmas.txt   | 1 +
+ tiedosto.txt | 1 -
+ 2 files changed, 1 insertion(+), 1 deletion(-)
+
+commit ac1ac0cdf01e3480cc975b2381f9dfa65dcbcca0
+Author: levitesuo <leevi.suotula@gmail.com>
+Date:   Tue Mar 14 11:47:57 2023 +0200
+
+    Poitettiin yksi tiedosto
+
+ toinen.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 6654539940475a79ca028ed6514f8ce82dda46d0
+Author: levitesuo <leevi.suotula@gmail.com>
+Date:   Mon Mar 13 18:21:36 2023 +0200
+
+    Uusi hakemisto ja tiedosto
+
+ stuff/jokin.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 1962d91fe91c958f775bea2dd6c89692ce94ef1a
+Author: levitesuo <leevi.suotula@gmail.com>
+Date:   Mon Mar 13 18:20:39 2023 +0200
+
+    Kolmas lisätty
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 6b40797b669ed8d8b127e618d24e3c0a0dca1707
+Author: levitesuo <leevi.suotula@gmail.com>
+Date:   Mon Mar 13 18:15:03 2023 +0200
+
+    No nyt se muutos sitte
+
+ tiedosto.txt | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit e2e70e85394f9bf2252fa72e58aefae5227a1901
+Author: levitesuo <leevi.suotula@gmail.com>
+Date:   Mon Mar 13 18:14:19 2023 +0200
+
+    muutos ja lisäys
+
+ toinen.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 0115c0343212bef37275d9b78e4eddb61626edbe
+Author: levitesuo <leevi.suotula@gmail.com>
+Date:   Mon Mar 13 18:10:34 2023 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)

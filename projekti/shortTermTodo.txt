@@ -1,0 +1,3 @@
+Ota poetry ja Infuse käyttöön
+Ota pylint käyttöön
+

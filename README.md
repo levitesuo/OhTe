@@ -35,3 +35,8 @@ Poetry ohjelman suorittaminen
 poetry run python3 src
 poetry shell
 ```
+
+Autopep8 formationti 
+```sh
+autopep8 --in-place --recursive src
+```

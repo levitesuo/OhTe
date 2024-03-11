@@ -17,3 +17,21 @@ curl -sSL https://install.python-poetry.org | POETRY_HOME=$HOME/.local python3 -
 echo "export PATH=\"\$HOME/.local/bin:\$PATH\"" >> $HOME/.bashrc
 
 ```
+
+Poetryn alustaminen
+```sh
+poetry init --python "^3.8"
+poetry install --no-root
+```
+
+Poetryn dependecien lisääminen
+```sh
+poetry add cowsay
+poetry add pytest --group dev
+```
+
+Poetry ohjelman suorittaminen
+```sh
+poetry run python3 src
+poetry shell
+```

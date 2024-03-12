@@ -1,4 +1,4 @@
-from ui.main_menu import MainMenu
+from ui.menu_view import MenuView
 
 
 class UI:
@@ -10,7 +10,7 @@ class UI:
         self._show_main_menu()
 
     def _show_main_menu(self):
-        self._current_view = MainMenu(
+        self._current_view = MenuView(
             self._root,
             self._show_board_view,
             self._show_saved_view,

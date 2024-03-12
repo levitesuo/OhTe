@@ -1,7 +1,7 @@
-from tkinter import ttk, constants
+from tkinter import ttk
 
 
-class MainMenu:
+class MenuView:
     def __init__(self, root, play_command, load_command, login_command):
         self._root = root
         self._frame = None

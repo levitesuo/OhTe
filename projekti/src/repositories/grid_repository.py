@@ -1,3 +1,4 @@
+import json
 from entities.board import Board
 from database_connection import get_database_connection
 
@@ -20,7 +21,7 @@ class GridRepository:
                        (grid_id,))
 
         grid_info = cursor.fetchone()
-        grid = eval(grid_info["content"])
+        grid = json.loads(grid_info["content"])
         size = len(grid)
         new_board = Board(size, grid_info["name"], grid_info["grid_id"], grid)
         return new_board

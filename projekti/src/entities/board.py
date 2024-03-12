@@ -2,8 +2,8 @@ import uuid
 
 
 class Board:
-    def __init__(self, size, name):
-        self._id = uuid.uuid4
+    def __init__(self, size, name, grid_id=uuid.uuid4):
+        self._id = grid_id
         self._size = size
         self._grid = [[0 for col in range(size)]
                       for row in range(size)]
@@ -35,6 +35,7 @@ class Board:
         '''Gets all the identifying info about the grid for it to be loaded again.'''
         return {"grid": self._grid, "name": self._name, "grid_id": self._id}
 
+    # HOX maby redundant
     def load_grid(self, new_grid, name, grid_id):
         '''Loads the grid from '''
         if len(new_grid) != len(new_grid[0]):

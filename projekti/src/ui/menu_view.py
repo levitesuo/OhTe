@@ -26,11 +26,11 @@ class MenuView:
         self._frame.grid_columnconfigure(0, weight=1)
         self._frame.grid_rowconfigure(0, weight=1)
 
-        header.grid(row=3, column=0, pady=10)
-        play_button.grid(row=4, column=0, pady=10)
-        load_button.grid(row=5, column=0, pady=10)
-        login_button.grid(row=6, column=0, pady=10)
-        quit_button.grid(row=7, column=0, pady=10)
+        header.grid(row=0, column=0, pady=10)
+        play_button.grid(row=1, column=0, pady=10)
+        load_button.grid(row=2, column=0, pady=10)
+        login_button.grid(row=3, column=0, pady=10)
+        quit_button.grid(row=4, column=0, pady=10)
 
     def pack(self):
         self._frame.place(relx=.5, rely=.5, anchor='c')

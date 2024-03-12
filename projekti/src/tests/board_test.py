@@ -1,6 +1,6 @@
 import unittest
 import uuid
-from board import Board
+from entities.board import Board
 
 
 class TestMaksukortti(unittest.TestCase):

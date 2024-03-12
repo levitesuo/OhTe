@@ -11,6 +11,7 @@
 ### Viikko 3
 >[UML simppeli monopoli](https://github.com/levitesuo/OhTe/blob/master/laskarit/viikko3/mermaid%20harjottelua/Tehtava_1.md)
 
+Boardissa _load_grid metodi on ehkä turha. Tämä palvelkoon muistutuksena myöhemmälle ajalle. 
 Poetryn asennus 
 ```sh
 curl -sSL https://install.python-poetry.org | POETRY_HOME=$HOME/.local python3 -

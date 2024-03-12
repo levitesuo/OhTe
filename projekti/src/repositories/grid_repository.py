@@ -20,6 +20,10 @@ class GridRepository:
                        (grid_id,))
 
         grid_info = cursor.fetchone()
+        grid = eval(grid_info["content"])
+        size = len(grid)
+        new_board = Board(size, grid_info["name"], grid_info["grid_id"], grid)
+        return new_board
 
 
 grid_repository = GridRepository(get_database_connection())

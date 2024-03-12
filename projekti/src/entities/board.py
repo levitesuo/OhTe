@@ -2,11 +2,14 @@ import uuid
 
 
 class Board:
-    def __init__(self, size, name, grid_id=uuid.uuid4):
+    def __init__(self, size, name, grid_id=uuid.uuid4, grid_data=None):
         self._id = grid_id
         self._size = size
-        self._grid = [[0 for col in range(size)]
-                      for row in range(size)]
+        if grid_data:
+            self._grid = grid_data
+        else:
+            self._grid = [[0 for col in range(size)]
+                          for row in range(size)]
         self._name = name
 
     def __str__(self):

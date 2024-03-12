@@ -34,3 +34,6 @@ class MenuView:
 
     def pack(self):
         self._frame.place(relx=.5, rely=.5, anchor='c')
+
+    def clear(self):
+        self._frame.destroy()

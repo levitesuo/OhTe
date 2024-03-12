@@ -1,4 +1,5 @@
 from ui.menu_view import MenuView
+from ui.board_creator_view import BoardCreatorView
 
 
 class UI:
@@ -10,15 +11,24 @@ class UI:
         self._show_main_menu()
 
     def _show_main_menu(self):
+        if self._current_view:
+            self._current_view.clear()
         self._current_view = MenuView(
             self._root,
-            self._show_board_view,
+            self._show_board_maker_view,
             self._show_saved_view,
             self._show_login_view)
         self._current_view.pack()
 
-    def _show_board_view(self):
-        pass
+    def _show_board_maker_view(self):
+        if self._current_view:
+            self._current_view.clear()
+        self._current_view = BoardCreatorView(
+            self._root,
+            self._show_main_menu,
+            self._show_main_menu
+        )
+        self._current_view.pack()
 
     def _show_login_view(self):
         pass

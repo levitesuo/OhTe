@@ -38,7 +38,7 @@ class UI:
         self._current_view = LoginView(
             self._root,
             self._show_main_menu,
-            self._show_main_menu,
+            self._show_register_view,
             self._show_main_menu
         )
         self._current_view.pack()
@@ -49,8 +49,9 @@ class UI:
         self._current_view = RegisterView(
             self._root,
             self._show_main_menu,
-            self._show_main_menu
+            self._show_login_view
         )
+        self._current_view.pack()
 
     def _show_saved_view(self):
         pass

@@ -13,6 +13,8 @@
 
 Boardissa _load_grid metodi on ehkä turha. Tämä palvelkoon muistutuksena myöhemmälle ajalle. 
 Poetryn asennus 
+
+Tietokannassa owner id, mutta board datatyyppi ei tue sitä. Tämä tekee siitä atm turhan.
 ```sh
 curl -sSL https://install.python-poetry.org | POETRY_HOME=$HOME/.local python3 -
 echo "export PATH=\"\$HOME/.local/bin:\$PATH\"" >> $HOME/.bashrc

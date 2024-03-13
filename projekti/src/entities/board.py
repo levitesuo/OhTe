@@ -13,12 +13,12 @@ class Board:
         self._name = name
 
     def __str__(self):
-        s = ""
-        for y in range(self._size):
-            for x in range(self._size):
-                s += str(self._grid[y][x])
-            s += "\n"
-        return s
+        output_string = ""
+        for i in range(self._size):
+            for j in range(self._size):
+                output_string += str(self._grid[i][j])
+            output_string += "\n"
+        return output_string
 
     def step(self):
         '''Applies game logic to the grid once.'''
@@ -26,12 +26,12 @@ class Board:
         self._grid = self._new_grid_from_neighbours(neigbour_grid)
         return 1
 
-    def manipulate(self, x: int, y: int):
-        '''Turns cell (x, y) to 0 if it's 1 or to 1 if it's 0.'''
-        if self._grid[y][x]:
-            self._grid[y][x] = 0
+    def manipulate(self, cord_x: int, cord_y: int):
+        '''Turns cell (cord_x, cord_y) to 0 if it's 1 or to 1 if it's 0.'''
+        if self._grid[cord_y][cord_x]:
+            self._grid[cord_y][cord_x] = 0
         else:
-            self._grid[y][x] = 1
+            self._grid[cord_y][cord_x] = 1
         return 1
 
     def get_grid(self):
@@ -75,24 +75,25 @@ class Board:
         neigbour_grid = [[0 for col in range(self._size)]
                          for row in range(self._size)]
         # Count the amount of neighbours
-        for y in range(self._size):
-            for x in range(self._size):
-                neigbour_grid[x][y] = self._count_neighbours(x, y)
+        for cord_y in range(self._size):
+            for cord_x in range(self._size):
+                neigbour_grid[cord_x][cord_y] = self._count_neighbours(
+                    cord_x, cord_y)
         return neigbour_grid
 
     def _new_grid_from_neighbours(self, neighbour_grid):
         '''Given a grid of neighbours generates a new state for the grid.'''
         new_grid = [[0 for col in range(self._size)]
                     for row in range(self._size)]
-        for y in range(self._size):
-            for x in range(self._size):
-                cell = neighbour_grid[x][y]
+        for cord_y in range(self._size):
+            for cord_x in range(self._size):
+                cell = neighbour_grid[cord_x][cord_y]
                 if cell == 2:
-                    new_grid[x][y] = self._grid[x][y]
+                    new_grid[cord_x][cord_y] = self._grid[cord_x][cord_y]
                 elif cell == 3:
-                    new_grid[x][y] = 1
+                    new_grid[cord_x][cord_y] = 1
                 elif cell < 2:
-                    new_grid[x][y] = 0
+                    new_grid[cord_x][cord_y] = 0
                 else:
                     cell = 0
         return new_grid

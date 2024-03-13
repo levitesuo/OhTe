@@ -1,6 +1,6 @@
 import json
 from entities.board import Board
-from database_connection import get_database_connection
+from database_connection import get_database_connection, get_test_connection
 
 
 class GridRepository:
@@ -26,5 +26,23 @@ class GridRepository:
         new_board = Board(size, grid_info["name"], grid_info["grid_id"], grid)
         return new_board
 
+    def get_all(self):
+        cursor = self._connection.cursos()
+
+        cursor.execute("SELECT * FROM grids;")
+
+        grid_infos = cursor.fetchall()
+
+        grids = []
+
+        for g in grid_infos:
+            grid = json.loads(g["content"])
+            size = len(grid)
+            new_board = Board(size, g["name"], g["grid_id"], grid)
+            grids.append(new_board)
+
+        return grids
+
 
 grid_repository = GridRepository(get_database_connection())
+grid_test_repository = GridRepository(get_test_connection())

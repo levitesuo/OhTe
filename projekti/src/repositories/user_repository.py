@@ -1,5 +1,5 @@
 from entities.user import User
-from database_connection import get_database_connection
+from database_connection import get_database_connection, get_test_connection
 
 
 class UserRepository:
@@ -27,3 +27,4 @@ class UserRepository:
 
 
 user_repository = UserRepository(get_database_connection())
+user_test_repository = UserRepository(get_test_connection())

@@ -21,6 +21,9 @@ class UserRepository:
 
         user_info = cursor.fetchone()
 
+        if not user_info:
+            return None
+
         return User(user_info["username"], user_info["password"], user_info["user_id"])
 
 

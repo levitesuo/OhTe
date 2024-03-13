@@ -21,6 +21,8 @@ class GridRepository:
                        (grid_id,))
 
         grid_info = cursor.fetchone()
+        if not grid_info:
+            return None
         grid = json.loads(grid_info["content"])
         size = len(grid)
         new_board = Board(size, grid_info["name"], grid_info["grid_id"], grid)

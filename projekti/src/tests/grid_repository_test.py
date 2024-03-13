@@ -34,3 +34,8 @@ class TestGridRepository(unittest.TestCase):
             db_boards.append(b.get_grid())
         self.assertEqual(
             db_boards, [self.board1.get_grid(), self.board2.get_grid()])
+
+    def test_fail_to_find(self):
+        grid_id = "aaa"
+        board = grid_test_repository.get_grid_by_id(grid_id)
+        self.assertEqual(None, None)

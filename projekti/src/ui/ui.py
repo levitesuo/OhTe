@@ -1,6 +1,7 @@
 from ui.menu_view import MenuView
 from ui.board_creator_view import BoardCreatorView
 from ui.login_view import LoginView
+from ui.register_view import RegisterView
 
 
 class UI:
@@ -41,6 +42,15 @@ class UI:
             self._show_main_menu
         )
         self._current_view.pack()
+
+    def _show_register_view(self):
+        if self._current_view:
+            self._current_view.clear()
+        self._current_view = RegisterView(
+            self._root,
+            self._show_main_menu,
+            self._show_main_menu
+        )
 
     def _show_saved_view(self):
         pass

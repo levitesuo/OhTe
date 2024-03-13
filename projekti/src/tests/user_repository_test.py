@@ -15,3 +15,7 @@ class TestUserRepository(unittest.TestCase):
     def test_get_user_by_username(self):
         db_user = user_test_repository.find_by_username(self.user1.username)
         self.assertEqual(db_user.get_user_info(), self.user1.get_user_info())
+
+    def test_fail_to_find(self):
+        db_user = user_test_repository.find_by_username("Pasi")
+        self.assertEqual(None, db_user)

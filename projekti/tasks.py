@@ -24,3 +24,8 @@ def coverage_report(ctx):
 @task(coverage)
 def cov_r(ctx):
     ctx.run("coverage report -m")
+
+
+@task()
+def build(ctx):
+    ctx.run("python3 src/build.py")

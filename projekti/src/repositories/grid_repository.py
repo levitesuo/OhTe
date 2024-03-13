@@ -11,7 +11,7 @@ class GridRepository:
         cursor = self._connection.cursor()
         grid = grid.get_grid()
         content = str(grid["grid"])
-        cursor.execute("INSERT INTO grids (grid_id, name, content, owner_id) values (? ? ? ?)",
+        cursor.execute("INSERT INTO grids (grid_id, name, content, owner_id) values (?, ?, ?, ?)",
                        (grid["grid_id"], grid["name"], content, user_id))
 
     def get_grid_by_id(self, grid_id):
@@ -27,7 +27,7 @@ class GridRepository:
         return new_board
 
     def get_all(self):
-        cursor = self._connection.cursos()
+        cursor = self._connection.cursor()
 
         cursor.execute("SELECT * FROM grids;")
 

@@ -41,3 +41,8 @@ Autopep8 formationti
 ```sh
 autopep8 --in-place --recursive src
 ```
+
+```sh
+coverage run --branch -m pytest src
+coverage report -m
+```

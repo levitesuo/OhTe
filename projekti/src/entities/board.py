@@ -2,8 +2,8 @@ import uuid
 
 
 class Board:
-    def __init__(self, size, name, grid_id=uuid.uuid4, grid_data=None):
-        self._id = grid_id
+    def __init__(self, size, name, grid_id=uuid.uuid4(), grid_data=None):
+        self._id = str(grid_id)
         self._size = size
         if grid_data:
             self._grid = grid_data

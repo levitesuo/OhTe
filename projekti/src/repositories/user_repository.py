@@ -9,7 +9,7 @@ class UserRepository:
     def register_user(self, user: User):
         cursor = self._connection.cursor()
 
-        cursor.execute("INSERT INTO users (user_id, username, password) values (? ? ?)",
+        cursor.execute("INSERT INTO users (user_id, username, password) values (?, ?, ?)",
                        (user.user_id, user.username, user.password)
                        )
 

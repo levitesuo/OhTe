@@ -11,12 +11,16 @@
 ### Viikko 3
 >[UML simppeli monopoli](https://github.com/levitesuo/OhTe/blob/master/laskarit/viikko3/mermaid%20harjottelua/Tehtava_1.md)
 
+### Mahdollisia ongelmia / todo
+
 Boardissa _load_grid metodi on ehkä turha. Tämä palvelkoon muistutuksena myöhemmälle ajalle. 
 Poetryn asennus 
 
 Tietokannassa owner id, mutta board datatyyppi ei tue sitä. Tämä tekee siitä atm turhan.
 
 Tietokannassa Uuid:t tallennettu str:inä, mutta luokka ottaa Uuiditä (mielestäni). Saattaa luoda ongelmia.
+
+### Hyödyllisiä komentoja / muistiinpanoja
 ```sh
 curl -sSL https://install.python-poetry.org | POETRY_HOME=$HOME/.local python3 -
 echo "export PATH=\"\$HOME/.local/bin:\$PATH\"" >> $HOME/.bashrc

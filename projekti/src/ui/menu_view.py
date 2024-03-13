@@ -1,4 +1,5 @@
 from tkinter import ttk
+from services import gol_service
 
 
 class MenuView:
@@ -31,6 +32,11 @@ class MenuView:
         load_button.grid(row=2, column=0, pady=10)
         login_button.grid(row=3, column=0, pady=10)
         quit_button.grid(row=4, column=0, pady=10)
+
+        if gol_service.user():
+            account_info = ttk.Label(
+                master=self._frame, text=f"Logged in as: {gol_service.user().username}", font=("Noto Mono", 10))
+            account_info.grid(row=5, column=0, pady=10)
 
     def pack(self):
         self._frame.place(relx=.5, rely=.5, anchor='c')

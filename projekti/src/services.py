@@ -39,3 +39,9 @@ class GOLService:
         if not user or user.password != password:
             raise InvalidCredentialsError("Invalid username or password")
         self._user = user
+
+    def user(self):
+        return self._user
+
+
+gol_service = GOLService()

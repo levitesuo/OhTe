@@ -13,8 +13,6 @@ class UserRepository:
                        (user.user_id, user.username, user.password)
                        )
 
-        cursor.commit()
-
     def find_by_username(self, username):
         cursor = self._connection.cursor()
 

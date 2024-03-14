@@ -26,14 +26,13 @@ class RegisterView:
         password = self._password_entry.get()
 
         if len(username) == 0 or len(password) == 0:
-            print("Len not ok")
+            print("ERROR: Len not ok")
             return
         try:
             gol_service.register_user(username, password)
             self._register_command()
-            print("Kääk")
         except:
-            print("Username stuff not ok")
+            print("ERROR: Username stuff not ok")
             return
 
     def _initialize_header(self):

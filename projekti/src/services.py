@@ -33,7 +33,6 @@ class GOLService:
         user = User(username, password)
         self._user_repository.register_user(user)
         self._user = user
-        print(f"Registerd {user}")
 
     def login(self, username, password):
         user = self._user_repository.find_by_username(username)

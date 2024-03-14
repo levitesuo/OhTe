@@ -28,7 +28,7 @@ class GOLService:
 
     def register_user(self, username, password):
         user_exists = self._user_repository.find_by_username(username)
-        if not user_exists:
+        if not (user_exists is None):
             raise UsernameExistsError(f"Username {username} already exists")
         user = User(username, password)
         self._user_repository.register_user(user)
@@ -39,6 +39,9 @@ class GOLService:
         if not user or user.password != password:
             raise InvalidCredentialsError("Invalid username or password")
         self._user = user
+
+    def logout(self):
+        self._user = None
 
     def user(self):
         return self._user

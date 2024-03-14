@@ -42,12 +42,20 @@ class MenuView:
         load_button.grid(row=2, column=0, pady=10)
 
     def _initialize_loginbutton(self):
-        login_button = ttk.Button(
-            master=self._frame,
-            text="Login",
-            command=self._login_command
-        )
-        login_button.grid(row=3, column=0, pady=10)
+        if gol_service.user():
+            logout_button = ttk.Button(
+                master=self._frame,
+                text="Logout",
+                command=self._logout_handler
+            )
+            logout_button.grid(row=3, column=0, pady=10)
+        else:
+            login_button = ttk.Button(
+                master=self._frame,
+                text="Login",
+                command=self._login_command
+            )
+            login_button.grid(row=3, column=0, pady=10)
 
     def _initialize_quitbutton(self):
         quit_button = ttk.Button(
@@ -65,14 +73,7 @@ class MenuView:
                 font=("Noto Mono", 10)
             )
 
-            logout_button = ttk.Button(
-                master=self._frame,
-                text="Logout",
-                command=self._logout_handler
-            )
-
             account_info.grid(row=5, column=0, pady=10)
-            logout_button.grid(row=6, column=0, pady=5)
 
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)

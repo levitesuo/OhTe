@@ -13,6 +13,7 @@ class GridRepository:
         content = str(grid["grid"])
         cursor.execute("INSERT INTO grids (grid_id, name, content, owner_id) values (?, ?, ?, ?)",
                        (grid["grid_id"], grid["name"], content, user_id))
+        self._connection.commit()
 
     def get_grid_by_id(self, grid_id):
         cursor = self._connection.cursor()

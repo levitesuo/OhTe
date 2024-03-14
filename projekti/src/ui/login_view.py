@@ -28,6 +28,7 @@ class LoginView:
 
         try:
             gol_service.login(username, password)
+            self._login_command()
         except:
             print("ERROR: Credentials not ok")
 

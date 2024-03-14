@@ -12,6 +12,7 @@ class UserRepository:
         cursor.execute("INSERT INTO users (user_id, username, password) values (?, ?, ?)",
                        (user.user_id, user.username, user.password)
                        )
+        self._connection.commit()
 
     def find_by_username(self, username):
         cursor = self._connection.cursor()

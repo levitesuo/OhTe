@@ -20,6 +20,9 @@ def create_tables(connection):
                    );
                    """)
     connection.commit()
+    cursor.execute("INSERT INTO users (username, password, user_id) VALUES (?, ?, ?)",
+                   ("Guest", "Guest", "1"))
+    connection.commit()
 
 
 def drop_tables(connection):

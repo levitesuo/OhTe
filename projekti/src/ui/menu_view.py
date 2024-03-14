@@ -3,12 +3,19 @@ from services import gol_service
 
 
 class MenuView:
-    def __init__(self, root, play_command, load_command, login_command):
+    def __init__(self,
+                 root,
+                 play_command,
+                 load_command,
+                 login_command,
+                 continue_command
+                 ):
         self._root = root
         self._frame = None
         self._play_command = play_command
         self._load_command = load_command
         self._login_command = login_command
+        self._continue_command = continue_command
         self._initialize()
 
     def _logout_handler(self):
@@ -26,12 +33,20 @@ class MenuView:
         header.grid(row=0, column=0, pady=10)
 
     def _initialize_playbutton(self):
-        play_button = ttk.Button(
-            master=self._frame,
-            text="Play",
-            command=self._play_command
-        )
-        play_button.grid(row=1, column=0, pady=10)
+        if gol_service.board():
+            continue_button = ttk.Button(
+                master=self._frame,
+                text="Continue",
+                command=self._continue_command
+            )
+            continue_button.grid(row=1, column=0, pady=10)
+        else:
+            play_button = ttk.Button(
+                master=self._frame,
+                text="Play",
+                command=self._play_command
+            )
+            play_button.grid(row=1, column=0, pady=10)
 
     def _initialize_loadbutton(self):
         load_button = ttk.Button(
@@ -42,7 +57,7 @@ class MenuView:
         load_button.grid(row=2, column=0, pady=10)
 
     def _initialize_loginbutton(self):
-        if gol_service.user():
+        if gol_service.user() and gol_service.user().username != "Guest":
             logout_button = ttk.Button(
                 master=self._frame,
                 text="Logout",

@@ -22,9 +22,14 @@ class TestGridRepository(unittest.TestCase):
         grid_test_repository.save_grid(self.board1, self.user1.user_id)
         grid_test_repository.save_grid(self.board2, self.user2.user_id)
 
-    def test_get_board1(self):
+    def test_get_board_by_id(self):
         grid_id = self.board1.get_grid()["grid_id"]
         board = grid_test_repository.get_grid_by_id(grid_id)
+        self.assertEqual(self.board1.get_grid(), board.get_grid())
+
+    def test_get_board_by_name(self):
+        grid_name = self.board1.get_grid()["name"]
+        board = grid_test_repository.get_grid_by_name(grid_name)
         self.assertEqual(self.board1.get_grid(), board.get_grid())
 
     def test_get_all_boards(self):

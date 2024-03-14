@@ -29,6 +29,20 @@ class GridRepository:
         new_board = Board(size, grid_info["name"], grid_info["grid_id"], grid)
         return new_board
 
+    def get_grid_by_name(self, grid_name):
+        cursor = self._connection.cursor()
+
+        cursor.execute("SELECT * FROM grids WHERE grids.name = ?",
+                       (grid_name,))
+
+        grid_info = cursor.fetchone()
+        if not grid_info:
+            return None
+        grid = json.loads(grid_info["content"])
+        size = len(grid)
+        new_board = Board(size, grid_info["name"], grid_info["grid_id"], grid)
+        return new_board
+
     def get_all(self):
         cursor = self._connection.cursor()
 

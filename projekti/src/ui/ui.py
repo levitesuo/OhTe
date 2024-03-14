@@ -19,7 +19,8 @@ class UI:
             self._root,
             self._show_board_maker_view,
             self._show_saved_view,
-            self._show_login_view)
+            self._show_login_view,
+            self._show_main_menu)
         self._current_view.pack()
 
     def _show_board_maker_view(self):

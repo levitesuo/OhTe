@@ -20,11 +20,15 @@ class GOLService:
     def __init__(
         self,
         grid_repository=default_grid_repository,
-        user_repository=default_user_repository
+        user_repository=default_user_repository,
+
     ):
         self._user = None
+        self._board = None
         self._grid_repository = grid_repository
         self._user_repository = user_repository
+        if self._user is None:
+            self.login("Guest", "Guest")
 
     def register_user(self, username, password):
         user_exists = self._user_repository.find_by_username(username)
@@ -41,10 +45,25 @@ class GOLService:
         self._user = user
 
     def logout(self):
-        self._user = None
+        self.login("Guest", "Guest")
+
+    def create_board(self, size, name):
+        self._board = Board(int(size.split("x")[0]), name)
+
+    def save_board(self):
+        self._grid_repository.save_grid(self._board, self._user.user_id)
+
+    def manipulate_board(self, x, y):
+        self._board.manipulate(x, y)
+
+    def step_board(self):
+        self._board.step()
 
     def user(self):
         return self._user
+
+    def board(self):
+        return self._board
 
 
 gol_service = GOLService()

@@ -2,6 +2,11 @@ from invoke import task
 
 
 @task
+def foo(ctx):
+    print("bar")
+
+
+@task
 def start(ctx):
     ctx.run("python3 src/index.py", pty=True)
 
@@ -26,6 +31,6 @@ def cov_r(ctx):
     ctx.run("coverage report -m")
 
 
-@task()
+@task
 def build(ctx):
     ctx.run("python3 src/build.py")

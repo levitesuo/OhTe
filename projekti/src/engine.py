@@ -1,10 +1,16 @@
+import time
 import pygame
+import pygame_widgets
+from pygame_widgets.button import Button
+from pygame_widgets.slider import Slider
 from services import gol_service
 
 
 class Engine:
     def __init__(self):
+        self._clock = None
         self._speed = 0
+        self._counter = 0
         self._pause = True
         self._screen = None
         self._screen_size = pygame.math.Vector2(600, 600)
@@ -12,32 +18,49 @@ class Engine:
         self._cell_size = None
         self._offsets = pygame.math.Vector2()
 
-        self._zoom_scale = 1
-        self._int_surf_size = pygame.math.Vector2(1500, 1500)
+        self._zoom_scale = 0.5
+        self._int_surf_size = pygame.math.Vector2(2000, 2000)
         self._int_surf = pygame.Surface(self._int_surf_size, pygame.SRCALPHA)
         self._int_offset = pygame.math.Vector2(
             self._int_surf_size // 2 - self._screen_size // 2)
 
+        self._slider = None
+
     def start(self):
         pygame.init()
+        self._clock = pygame.time.Clock()
         self._screen = pygame.display.set_mode(
             (self._screen_size.x, self._screen_size.y)
         )
         pygame.display.set_caption(gol_service.board().get_grid()["name"])
+        self._slider = self._speed_slider()
         self._loop()
 
     def _loop(self):
         while True:
+            events = pygame.event.get()
             self._mouse_pos = pygame.math.Vector2(pygame.mouse.get_pos())
             self._screen.fill((100, 100, 100))
             self._int_surf.fill((100, 100, 100))
-            self._check_events()
+            self._check_events(events)
             self._offset_handler()
             self._render_grid()
+            pygame_widgets.update(events)
+            self._speed_handler()
             pygame.display.update()
+            self._clock.tick(60)
 
-    def _check_events(self):
-        events = pygame.event.get()
+    def _speed_handler(self):
+        # Tämän funktion kirjoittamiseen käytetty apuna copilottia
+        self._speed = self._slider.getValue()
+        if not self._pause:
+            if self._counter >= (100 - self._speed):
+                self._counter = 0
+                gol_service.step_board()
+            else:
+                self._counter += 1
+
+    def _check_events(self, events):
         for event in events:
             if event.type == pygame.QUIT:
                 raise SystemExit
@@ -54,6 +77,7 @@ class Engine:
                 self._key_handler(event)
 
     def _handle_click(self):
+        # Tämän function kirjoittamisessa on käytetty apuna copilottia
         scaled_mouse_pos = (self._mouse_pos - self._screen_size / 2) / \
             self._zoom_scale + self._screen_size / 2
         grid = gol_service.board().get_grid()
@@ -66,7 +90,7 @@ class Engine:
 
     def _key_handler(self, event):
         if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
-            gol_service.step_board()
+            self._pause = not self._pause
 
     def _offset_handler(self):
         moving_speed = 1 / self._zoom_scale
@@ -80,15 +104,12 @@ class Engine:
         if keys[pygame.K_UP]:
             self._offsets.y += moving_speed
 
-        offset_limit = self._screen_size / 2
+        offset_limit = self._int_surf_size / 2 - self._screen_size / 2
         self._limit_offset(offset_limit)
 
     def _limit_offset(self, limit):
-        self._offsets.x = min(
-            max(-limit.x, self._offsets.x), limit.x)
-
-        self._offsets.y = min(
-            max(-limit.y, self._offsets.y), limit.y)
+        self._offsets.x = max(-limit.x, min(limit.x, self._offsets.x))
+        self._offsets.y = max(-limit.y, min(limit.y, self._offsets.y))
 
     def _render_grid(self):
         grid = gol_service.board().get_grid()
@@ -102,7 +123,7 @@ class Engine:
                 if cell:
                     color = (200, 200, 200)
                 else:
-                    color = (0, 0, 0)
+                    color = (50, 50, 50)
                 pygame.draw.rect(
                     self._int_surf,
                     color,
@@ -117,6 +138,19 @@ class Engine:
             self._int_surf, self._int_surf_size * self._zoom_scale)
         scaled_rect = scaled_surf.get_rect(center=self._screen_size / 2)
         self._screen.blit(scaled_surf, scaled_rect)
+
+    def _speed_slider(self):
+        # Tämän function kirjoittamisessa on käytetty apuna copilottia
+        slider = Slider(
+            self._screen,
+            int(self._screen_size.x // 2 - 100),
+            int(self._screen_size.y - 50),
+            200,
+            20,
+            color=(10, 20, 70),
+            handle_color=(20, 40, 140)
+        )
+        return slider
 
 
 game_engine = Engine()

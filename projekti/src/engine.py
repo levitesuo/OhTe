@@ -10,9 +10,13 @@ class Engine:
         self._screen_size = pygame.math.Vector2(600, 600)
         self._mouse_pos = None
         self._cell_size = None
-        self._offsets = pygame.math.Vector2(10, 50)
-        self._moving = {"Right": False,
-                        "Left": False, "Up": False, "Down": False}
+        self._offsets = pygame.math.Vector2()
+
+        self._zoom_scale = 1
+        self._int_surf_size = pygame.math.Vector2(1500, 1500)
+        self._int_surf = pygame.Surface(self._int_surf_size, pygame.SRCALPHA)
+        self._int_offset = pygame.math.Vector2(
+            self._int_surf_size // 2 - self._screen_size // 2)
 
     def start(self):
         pygame.init()
@@ -26,6 +30,7 @@ class Engine:
         while True:
             self._mouse_pos = pygame.math.Vector2(pygame.mouse.get_pos())
             self._screen.fill((100, 100, 100))
+            self._int_surf.fill((100, 100, 100))
             self._check_events()
             self._offset_handler()
             self._render_grid()
@@ -37,55 +42,42 @@ class Engine:
             if event.type == pygame.QUIT:
                 raise SystemExit
             if event.type == pygame.MOUSEBUTTONDOWN:
-                self._handle_click()
+                if event.button == 1:  # Right click
+                    self._handle_click()
+                elif event.button == 4:  # Mwheel up
+                    self._zoom_scale += 0.1
+                elif event.button == 5:  # Mwheel down
+                    self._zoom_scale -= 0.1
+                self._zoom_scale = max(0.1, self._zoom_scale)
+
             if event.type == pygame.KEYDOWN or event.type == pygame.KEYUP:
                 self._key_handler(event)
 
     def _handle_click(self):
-        x = int((self._mouse_pos.x - self._offsets.x) // self._cell_size)
-        y = int((self._mouse_pos.y - self._offsets.y) // self._cell_size)
-        board_size = len(gol_service.board().get_grid()["grid"])
-        if 0 <= x < board_size and 0 <= y < board_size:
+        scaled_mouse_pos = (self._mouse_pos - self._screen_size / 2) / \
+            self._zoom_scale + self._screen_size / 2
+        grid = gol_service.board().get_grid()
+        grid_size = len(grid["grid"])
+        cell_size = self._cell_size
+        x = int((scaled_mouse_pos.x - self._offsets.x) // cell_size)
+        y = int((scaled_mouse_pos.y - self._offsets.y) // cell_size)
+        if 0 <= x < grid_size and 0 <= y < grid_size:
             gol_service.manipulate_board(x, y)
 
     def _key_handler(self, event):
-        arrow_keys = [pygame.K_RIGHT, pygame.K_LEFT,
-                      pygame.K_UP, pygame.K_DOWN]
         if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
             gol_service.step_board()
-        if event.key in arrow_keys:
-            self._arrowkey_handler(event)
-
-    def _arrowkey_handler(self, event):
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
-                self._moving["Left"] = True
-            if event.key == pygame.K_RIGHT:
-                self._moving["Right"] = True
-            if event.key == pygame.K_DOWN:
-                self._moving["Down"] = True
-            if event.key == pygame.K_UP:
-                self._moving["Up"] = True
-
-        if event.type == pygame.KEYUP:
-            if event.key == pygame.K_LEFT:
-                self._moving["Left"] = False
-            if event.key == pygame.K_RIGHT:
-                self._moving["Right"] = False
-            if event.key == pygame.K_DOWN:
-                self._moving["Down"] = False
-            if event.key == pygame.K_UP:
-                self._moving["Up"] = False
 
     def _offset_handler(self):
-        moving_speed = 1
-        if self._moving["Left"]:
+        moving_speed = 1 / self._zoom_scale
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_LEFT]:
             self._offsets.x += moving_speed
-        if self._moving["Right"]:
+        if keys[pygame.K_RIGHT]:
             self._offsets.x -= moving_speed
-        if self._moving["Down"]:
+        if keys[pygame.K_DOWN]:
             self._offsets.y -= moving_speed
-        if self._moving["Up"]:
+        if keys[pygame.K_UP]:
             self._offsets.y += moving_speed
 
         offset_limit = self._screen_size / 2
@@ -112,13 +104,19 @@ class Engine:
                 else:
                     color = (0, 0, 0)
                 pygame.draw.rect(
-                    self._screen,
+                    self._int_surf,
                     color,
-                    [x * (self._cell_size) + self._offsets.x,
-                     y * (self._cell_size) + self._offsets.y,
+                    [x * (self._cell_size) + self._offsets.x + self._int_offset.x,
+                     y * (self._cell_size) +
+                     self._offsets.y + self._int_offset.y,
                      (self._cell_size - gap_size),
                      (self._cell_size - gap_size)]
                 )
+
+        scaled_surf = pygame.transform.scale(
+            self._int_surf, self._int_surf_size * self._zoom_scale)
+        scaled_rect = scaled_surf.get_rect(center=self._screen_size / 2)
+        self._screen.blit(scaled_surf, scaled_rect)
 
 
 game_engine = Engine()

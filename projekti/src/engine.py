@@ -1,8 +1,8 @@
 import time
 import pygame
 import pygame_widgets
-from pygame_widgets.button import Button
-from pygame_widgets.slider import Slider
+from game_objects.button import Button
+from game_objects.speed_slider import Speed_Slider
 from services import gol_service
 
 
@@ -25,16 +25,40 @@ class Engine:
             self._int_surf_size // 2 - self._screen_size // 2)
 
         self._slider = None
+        self._pause_button = None
+        self._step_button = None
 
     def start(self):
         pygame.init()
         self._clock = pygame.time.Clock()
+        self._init_screen()
+        self._loop()
+
+    def _init_screen(self):
         self._screen = pygame.display.set_mode(
             (self._screen_size.x, self._screen_size.y)
         )
         pygame.display.set_caption(gol_service.board().get_grid()["name"])
-        self._slider = self._speed_slider()
-        self._loop()
+
+        self._slider = Speed_Slider(self._screen)
+        self._pause_button = Button(
+            self._screen,
+            40,
+            self._screen_size.y - 60,
+            100,
+            50,
+            (200, 100, 100),
+            "Start",
+        )
+        self._step_button = Button(
+            self._screen,
+            self._screen_size.x - 140,
+            self._screen_size.y - 60,
+            100,
+            50,
+            (100, 100, 200),
+            "Step",
+        )
 
     def _loop(self):
         while True:
@@ -47,12 +71,14 @@ class Engine:
             self._render_grid()
             pygame_widgets.update(events)
             self._speed_handler()
+            self._pause_button.draw()
+            self._step_button.draw()
             pygame.display.update()
             self._clock.tick(60)
 
     def _speed_handler(self):
         # Tämän funktion kirjoittamiseen käytetty apuna copilottia
-        self._speed = self._slider.getValue()
+        self._speed = self._slider.get_value()
         if not self._pause:
             if self._counter >= (100 - self._speed):
                 self._counter = 0
@@ -73,11 +99,19 @@ class Engine:
                     self._zoom_scale -= 0.1
                 self._zoom_scale = max(0.1, self._zoom_scale)
 
-            if event.type == pygame.KEYDOWN or event.type == pygame.KEYUP:
-                self._key_handler(event)
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
+                self._toggle_pause()
 
     def _handle_click(self):
         # Tämän function kirjoittamisessa on käytetty apuna copilottia
+        if self._pause_button.is_pressed(self._mouse_pos):
+            self._toggle_pause()
+            return
+        if self._step_button.is_pressed(self._mouse_pos):
+            gol_service.step_board()
+            return
+        if self._slider.contains(self._mouse_pos):
+            return
         scaled_mouse_pos = (self._mouse_pos - self._screen_size / 2) / \
             self._zoom_scale + self._screen_size / 2
         grid = gol_service.board().get_grid()
@@ -88,9 +122,14 @@ class Engine:
         if 0 <= x < grid_size and 0 <= y < grid_size:
             gol_service.manipulate_board(x, y)
 
-    def _key_handler(self, event):
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
-            self._pause = not self._pause
+    def _toggle_pause(self):
+        self._pause = not self._pause
+        if self._pause:
+            self._pause_button.set_text("Start")
+            self._pause_button.set_color((200, 100, 100))
+        else:
+            self._pause_button.set_text("Pause")
+            self._pause_button.set_color((100, 200, 100))
 
     def _offset_handler(self):
         moving_speed = max(1 / self._zoom_scale, 0.1)
@@ -138,19 +177,6 @@ class Engine:
             self._int_surf, self._int_surf_size * self._zoom_scale)
         scaled_rect = scaled_surf.get_rect(center=self._screen_size / 2)
         self._screen.blit(scaled_surf, scaled_rect)
-
-    def _speed_slider(self):
-        # Tämän function kirjoittamisessa on käytetty apuna copilottia
-        slider = Slider(
-            self._screen,
-            int(self._screen_size.x // 2 - 100),
-            int(self._screen_size.y - 50),
-            200,
-            20,
-            color=(10, 20, 70),
-            handle_color=(20, 40, 140)
-        )
-        return slider
 
 
 game_engine = Engine()

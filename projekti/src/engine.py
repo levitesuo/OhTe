@@ -155,7 +155,7 @@ class Engine:
         grid_data = grid["grid"]
         grid_size = len(grid_data)
         self._cell_size = self._screen_size.x // grid_size
-        gap_size = min(self._cell_size // 10, 1)
+        gap_size = max(self._cell_size // 10, 1)
         for x in range(grid_size):
             for y in range(grid_size):
                 cell = grid_data[y][x]

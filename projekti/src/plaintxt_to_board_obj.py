@@ -14,12 +14,10 @@ def start_eng_from_file(filename):
     with open(filepath, "r") as f:
         data = f.read()
         data = data.split("\n")
-        print(data)
         for i in range(len(data)):
             for j in range(len(data[i])):
                 if data[i][j] == "O":
                     grid[j+offset][i+offset] = 1
-                    print(j+offset, i+offset)
 
     gol_service._board = Board(bint, "From grid", grid_data=grid)
     game_engine.start()

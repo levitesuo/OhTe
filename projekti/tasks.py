@@ -7,11 +7,6 @@ def start(ctx):
 
 
 @task
-def max(ctx):
-    ctx.run("python3 src/plaintxt_to_board_obj.py", pty=True)
-
-
-@task
 def test(ctx):
     ctx.run("pytest src", pty=True)
 

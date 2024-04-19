@@ -132,15 +132,15 @@ class Engine:
             self._pause_button.set_color((100, 200, 100))
 
     def _offset_handler(self):
-        moving_speed = max(4 / self._zoom_scale, 0.1)
+        moving_speed = max(1 / self._zoom_scale, 0.1)
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_a]:
+        if keys[pygame.K_LEFT]:
             self._offsets.x += moving_speed
-        if keys[pygame.K_d]:
+        if keys[pygame.K_RIGHT]:
             self._offsets.x -= moving_speed
-        if keys[pygame.K_s]:
+        if keys[pygame.K_DOWN]:
             self._offsets.y -= moving_speed
-        if keys[pygame.K_w]:
+        if keys[pygame.K_UP]:
             self._offsets.y += moving_speed
 
         offset_limit = self._int_surf_size / 2 - self._screen_size / 2

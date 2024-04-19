@@ -1,4 +1,3 @@
-import time
 import pygame
 import pygame_widgets
 from game_objects.button import Button
@@ -111,7 +110,7 @@ class Engine:
     def _check_events(self, events):
         for event in events:
             if event.type == pygame.QUIT:
-                raise SystemExit
+                pygame.quit()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:  # Right click
                     self._handle_click()
@@ -131,6 +130,11 @@ class Engine:
             return
         if self._step_button.is_pressed(self._mouse_pos):
             gol_service.step_board()
+            return
+        if self._menu_button.is_pressed(self._mouse_pos):
+            pygame.quit()
+            return
+        if self._save_button.is_pressed(self._mouse_pos):
             return
         if self._slider.contains(self._mouse_pos):
             return

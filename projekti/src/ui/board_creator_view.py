@@ -1,14 +1,14 @@
 from tkinter import ttk
 from services import gol_service
-from engine import game_engine
 
 
 class BoardCreatorView:
-    def __init__(self, root, create_board_command, back_to_menu_command):
+    def __init__(self, root, create_board_command, back_to_menu_command, pygame_handler):
         self._root = root
         self._frame = None
         self._create_board_command = create_board_command
         self._cancel_command = back_to_menu_command
+        self._pygame_command = pygame_handler
         self._header = None
         self._size_select = None
         self._world_name = None
@@ -25,8 +25,7 @@ class BoardCreatorView:
         size = self._size_select.get()
         name = self._world_name.get()
         gol_service.create_board(size, name)
-        self._root.destroy()
-        game_engine.start()
+        self._pygame_command()
 
     def _initialize_header(self):
         self._header = ttk.Label(master=self._root,

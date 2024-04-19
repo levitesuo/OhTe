@@ -27,6 +27,8 @@ class Engine:
         self._slider = None
         self._pause_button = None
         self._step_button = None
+        self._menu_button = None
+        self._save_button = None
 
     def start(self):
         pygame.init()
@@ -59,6 +61,24 @@ class Engine:
             (100, 100, 200),
             "Step",
         )
+        self._menu_button = Button(
+            self._screen,
+            40,
+            10,
+            100,
+            50,
+            (100, 50, 150),
+            "Menu",
+        )
+        self._save_button = Button(
+            self._screen,
+            self._screen_size.x - 140,
+            10,
+            100,
+            50,
+            (100, 50, 150),
+            "Save",
+        )
 
     def _loop(self):
         while True:
@@ -73,6 +93,8 @@ class Engine:
             self._speed_handler()
             self._pause_button.draw()
             self._step_button.draw()
+            self._menu_button.draw()
+            self._save_button.draw()
             pygame.display.update()
             self._clock.tick(60)
 
@@ -134,13 +156,13 @@ class Engine:
     def _offset_handler(self):
         moving_speed = max(1 / self._zoom_scale, 0.1)
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_LEFT]:
+        if keys[pygame.K_a]:
             self._offsets.x += moving_speed
-        if keys[pygame.K_RIGHT]:
+        if keys[pygame.K_d]:
             self._offsets.x -= moving_speed
-        if keys[pygame.K_DOWN]:
+        if keys[pygame.K_s]:
             self._offsets.y -= moving_speed
-        if keys[pygame.K_UP]:
+        if keys[pygame.K_w]:
             self._offsets.y += moving_speed
 
         offset_limit = self._int_surf_size / 2 - self._screen_size / 2

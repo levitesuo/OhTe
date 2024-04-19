@@ -29,3 +29,8 @@ def cov_r(ctx):
 @task
 def build(ctx):
     ctx.run("python3 src/build.py")
+
+
+@task
+def runEng(ctx):
+    ctx.run("python3 src/dev_tool_engine.py")

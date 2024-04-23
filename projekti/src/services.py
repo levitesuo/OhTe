@@ -53,8 +53,8 @@ class GOLService:
     def save_board(self):
         self._grid_repository.save_grid(self._board, self._user.user_id)
 
-    def load_board(self, id):
-        self._board = self._grid_repository.get_grid_by_id(id)
+    def load_board(self, board_id):
+        self._board = self._grid_repository.get_grid_by_id(board_id)
 
     def get_boards(self):
         return self._grid_repository.get_all()

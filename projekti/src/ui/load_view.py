@@ -19,14 +19,13 @@ class LoadView:
 
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
-        maps = [m.get_grid() for m in gol_service.get_boards()]
-        print([m['name'] for m in maps])
-        for m in maps:
+        maps = [mi.get_grid() for mi in gol_service.get_boards()]
+        for map in maps:
             sub_frame = ttk.Frame(master=self._frame)
-            lable = ttk.Label(master=sub_frame, text=f"{m['name']}")
+            lable = ttk.Label(master=sub_frame, text=f"{map['name']}")
             lable.pack(side='left')
             button = ttk.Button(master=sub_frame, text='load',
-                                command=lambda: self._pygame_command(m['grid_id']))
+                                command=lambda: self._pygame_command(map['grid_id']))
             button.pack(side='right')
             sub_frame.pack(side='top')
 

@@ -13,7 +13,7 @@ def create_tables(connection):
 
     cursor.execute("""
                    CREATE TABLE grids (
-                       grid_id TEXT,
+                       grid_id INTEGER PRIMARY KEY,
                        name TEXT NOT NULL,
                        content TEXT NOT NULL,
                        owner_id INTEGER NOT NULL

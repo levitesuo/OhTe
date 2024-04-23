@@ -5,6 +5,7 @@ from ui.menu_view import MenuView
 from ui.board_creator_view import BoardCreatorView
 from ui.login_view import LoginView
 from ui.register_view import RegisterView
+from ui.load_view import LoadView
 
 
 class UI:
@@ -37,7 +38,7 @@ class UI:
         self._current_view = MenuView(
             self._root,
             self._show_board_maker_view,
-            self._show_saved_view,
+            self._show_load_view,
             self._show_login_view,
             self._pygame_handler)
         self._current_view.pack()
@@ -74,5 +75,11 @@ class UI:
         )
         self._current_view.pack()
 
-    def _show_saved_view(self):
-        pass
+    def _show_load_view(self):
+        if self._current_view:
+            self._current_view.clear()
+        self._current_view = LoadView(
+            self._root,
+            self._show_main_menu,
+            self._pygame_handler
+        )

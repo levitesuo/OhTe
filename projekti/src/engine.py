@@ -135,6 +135,7 @@ class Engine:
             pygame.quit()
             return
         if self._save_button.is_pressed(self._mouse_pos):
+            gol_service.save_board()
             return
         if self._slider.contains(self._mouse_pos):
             return

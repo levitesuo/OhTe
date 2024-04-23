@@ -36,7 +36,10 @@ def drop_tables(connection):
     connection.commit()
 
 
-def initialize_database():
+def initialize_database():  # pragma: no cover
+    '''
+    This function is ommited from coverage becouse we don't want to run tests on the actual database.
+    '''
 
     connection = get_database_connection()
 
@@ -52,5 +55,6 @@ def initialize_test_database():
     create_tables(connection)
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
+    ''' Omited from coverage'''
     initialize_database()

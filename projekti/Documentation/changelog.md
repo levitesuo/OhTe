@@ -7,3 +7,9 @@
 - Pelialustaa voi "Maalat", liikutella (WASD), zoomata (MWHEEL), askeltaa eteenpäin sekä ns. antaa juosta
 - juoksemisen nopeutta voi säätää
 - Pause toglattavana välilyönnistä
+## Viikko 4
+- En tainnut tehdä mitään :3
+
+## Viikko 5
+- Pelinäkymään lisätty menu ja save nappi
+- 

@@ -39,14 +39,14 @@ class MenuView:
                 text="Continue",
                 command=self._continue_command
             )
-            continue_button.grid(row=1, column=0, pady=10)
-        else:
-            play_button = ttk.Button(
-                master=self._frame,
-                text="Play",
-                command=self._play_command
-            )
-            play_button.grid(row=1, column=0, pady=10)
+            continue_button.grid(row=5, column=0, pady=10)
+
+        play_button = ttk.Button(
+            master=self._frame,
+            text="New map",
+            command=self._play_command
+        )
+        play_button.grid(row=1, column=0, pady=10)
 
     def _initialize_loadbutton(self):
         load_button = ttk.Button(
@@ -88,7 +88,7 @@ class MenuView:
                 font=("Noto Mono", 10)
             )
 
-            account_info.grid(row=5, column=0, pady=10)
+            account_info.grid(row=6, column=0, pady=10)
 
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)

@@ -22,7 +22,7 @@ def coverage_report(ctx):
 
 
 @task(coverage)
-def cov_r(ctx):
+def covr(ctx):
     ctx.run("coverage report -m")
 
 

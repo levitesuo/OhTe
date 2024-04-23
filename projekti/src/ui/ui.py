@@ -83,3 +83,4 @@ class UI:
             self._show_main_menu,
             self._pygame_handler
         )
+        self._current_view.pack()

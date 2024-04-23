@@ -12,4 +12,6 @@
 
 ## Viikko 5
 - Pelinäkymään lisätty menu ja save nappi
-- 
+- UI:seen lisätty load näkymä
+- lisätty dokumentaatiota
+- Tunteja käytetty 5h ish

@@ -11,7 +11,7 @@ class LoadView:
 
         def _load_stage(stage_id):
             gol_service.load_board(stage_id)
-            
+
             to_pygame_command()
 
         self._pygame_command = _load_stage
@@ -31,12 +31,12 @@ class LoadView:
             width=400,
             height=350)
         scroll_frame.pack(pady=20)
-        for map in maps:
+        for m in maps:
             sub_frame = ttk.Frame(master=scroll_frame)
-            lable = ttk.Label(master=sub_frame, text=f"{map['name']}")
+            lable = ttk.Label(master=sub_frame, text=f"{m['name']}")
             lable.pack(side='left')
             button = ttk.Button(master=sub_frame, text='load',
-                                command=lambda: self._pygame_command(map['grid_id']))
+                                command=lambda: self._pygame_command(m['grid_id']))
             button.pack(side='right')
             sub_frame.pack(side='top')
         cancel_button = ttk.Button(

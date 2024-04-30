@@ -55,6 +55,7 @@ class GOLService:
 
     def load_board(self, board_id):
         self._board = self._grid_repository.get_grid_by_id(board_id)
+        print(self._board._name)
 
     def get_boards(self):
         return self._grid_repository.get_all()

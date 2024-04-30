@@ -11,6 +11,7 @@ class LoadView:
 
         def _load_stage(stage_id):
             gol_service.load_board(stage_id)
+            
             to_pygame_command()
 
         self._pygame_command = _load_stage

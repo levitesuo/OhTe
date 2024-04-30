@@ -15,3 +15,8 @@
 - UI:seen lisätty load näkymä
 - lisätty dokumentaatiota
 - Tunteja käytetty 5h ish
+
+## Viikko 5
+- Lisätty hieman dokumentaatiota.
+- Seuraavaksi / seuraavalla viikolla ois tarkotus kirjottaa docstringit ja dokumentaatio sekä hioa vielä load view näkymä
+- Siinä on kanssa semmone bugi ettei lataa sitä karttaa minkä klikkaa, mutta sen syytä en oo oikein vielä paikottanu.

@@ -31,6 +31,7 @@ class Engine:
 
     def start(self):
         pygame.init()
+        self._pause = True
         self._clock = pygame.time.Clock()
         self._init_screen()
         self._loop()

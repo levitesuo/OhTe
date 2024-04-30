@@ -35,7 +35,10 @@ entities <|-- repositories
 ## Käyttöliittymä
 
 Käyttöliittymä(t) on jaettu kahteen
-- 
+- tkinter pohjaiset menu näkymät 
+- pygame pohjainen peli näkymä
+
+
 ## Sovelluslogiikka
 
 ## Tietojen pysyväistallennus

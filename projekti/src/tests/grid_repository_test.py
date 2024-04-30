@@ -17,13 +17,16 @@ class TestGridRepository(unittest.TestCase):
                  [1, 0, 0, 1],
                  [1, 0, 0, 1]]
         self.board1 = Board(3, "x", grid_data=grid1)
-        self.board2 = Board(5, "lines", grid_data=grid2)
+        self.board2 = Board(3, "lines", grid_data=grid2)
+
+        self.board1._id = '1'
+        self.board2._id = '2'
 
         grid_test_repository.save_grid(self.board1, self.user1.user_id)
         grid_test_repository.save_grid(self.board2, self.user2.user_id)
 
     def test_get_board_by_id(self):
-        grid_id = self.board1.get_grid()["grid_id"]
+        grid_id = 1
         board = grid_test_repository.get_grid_by_id(grid_id)
         self.assertEqual(self.board1.get_grid(), board.get_grid())
 

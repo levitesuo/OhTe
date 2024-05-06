@@ -22,11 +22,18 @@ class LoadView:
 
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
-        big_lable = ttk.Label(master=self._frame,
-                              text="Load map",
-                              font=("Noto Mono", 20, 'bold')
-                              )
-        big_lable.pack(pady=10)
+        self._initialize_header()
+        self._initialize_load_list()
+        self._initialize_cancel_button()
+
+    def _initialize_header(self):
+        header = ttk.Label(master=self._frame,
+                           text="Load map",
+                           font=("Noto Mono", 20, 'bold')
+                           )
+        header.pack(pady=10)
+
+    def _initialize_load_list(self):
         maps = [mi.get_grid() for mi in gol_service.get_boards()]
         scroll_frame = cttk.CTkScrollableFrame(
             master=self._frame,
@@ -48,6 +55,8 @@ class LoadView:
                                         self._pygame_command, m['grid_id']))
             button.pack(side='right')
             sub_frame.pack(side='top', pady=5)
+
+    def _initialize_cancel_button(self):
         cancel_button = ttk.Button(
             master=self._frame, text='cancel', command=self._cancel_command)
         cancel_button.pack()

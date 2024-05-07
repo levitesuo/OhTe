@@ -1,7 +1,7 @@
 from pygame_widgets.slider import Slider
 
 
-class Speed_Slider:
+class SpeedSlider:
     '''
     A class for easy creation of a speed slider from pygame_widgets
 

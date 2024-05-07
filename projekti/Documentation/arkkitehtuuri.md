@@ -1,6 +1,9 @@
 # Arkkitehtuurikuvaus
 
 ## Rakenne
+
+Ohjelma on toteutettu käyttäen kolmitasoista kerrosarkkitehtuuria. Tätä hieman sotkee UI:n ja game_enginen verrattavissa olevat roolit, sillä kummatkin ovat vastuussa käyttöliittymästä.
+
 ```mermaid
 ---
 title: Sovelluksen rakenne
@@ -38,10 +41,37 @@ Käyttöliittymä(t) on jaettu kahteen
 - tkinter pohjaiset menu näkymät 
 - pygame pohjainen peli näkymä
 
+Tkinter pohjaisissa menu näkymissä jokainen sivu on jaettu omaan luokkaansa sekä tiedostoonsa. Nämä ovat hyvin eristettyhä sovelluslogiikasta.
+
+Pygamepohjaisessa game_engine luokassa on ollut pakko sotkea hieman toiminnallisuutta ja käyttöliittymää. Toiminnallisuutta täältä löytyy pelin askeltamisen nopeuden hallinta sekä zoomauksen että liikkumisen hallinta, jotka olisivat kaikki hankala toteuttaa muualla.
+
 
 ## Sovelluslogiikka
 
+```mermaid
+ classDiagram
+      Board "*" --> "1" User
+      class User{
+          id
+          username
+          password
+      }
+      class Board{
+          id
+          name
+          size
+          grid
+      }
+```
+
+TOiminnallisista kokonaisuuksista vastaa luokka GOLService josta löytyy kaikille UI:n ja enginen pääfunktioille omat metodit. Tällä oliolla saavutetaan myös tiedonsiirto UI:n ja enginen välillä.
+
 ## Tietojen pysyväistallennus
+
+Pakkauksen repositories luokat GridRepository ja UserRepository huolehtivat tietojen tallettamisesta. Kummatkin luokat tallentavat tiedot SQLite-tietokantaan.
+
+UserRepository:n tallentaa tiedot täsmälleen siinä muodossa kun ne ovat User luokassa, mutta GridRepository pakkaa Board objektin grid atribuutin tiedon tekstijonoksi str(grid) komennolla ennen tietokantaan pakkaamista. Kun GridRepositorystä pyydetään tietoa se purkaa kyseiset tekstijonot takaisin matriiseiksi. Board olion size atribuutti jätetään myös tallentamatta, sillä se voidaan helposti laskea Board olion grid atribuutin pituudesta.
+
 
 
 
@@ -51,6 +81,7 @@ Käyttöliittymä(t) on jaettu kahteen
 
 ## Päätoiminnallisuudet
 
+Alla on kuvattu sovelluksen päätoiminnallisuutta sekvenssikaaviona.
 
 ### Käyttäjän kirjaantuminen
 
@@ -109,6 +140,48 @@ sequenceDiagram
   UI->>engine: game_engine.start()
 ```
 
+### Kartan tallennus
+
+```mermaid
+sequenceDiagram
+  actor Käyttäjä
+  participant game_engine
+  participant GOL_service
+  participant grid_repository
+  Käyttäjä->>game_engine: click "Save"
+  game_engine->>GOL_service: save_board()
+  GOL_service->>grid_repository: save_grid(self._board, self._user.user_id)
+```
+
+### Kartan lataaminen
+
+```mermaid
+sequenceDiagram
+  actor Käyttäjä
+  participant UI
+  participant GOL_service
+  participant grid_repository
+  participant engine
+  Käyttäjä->>UI: click "Load"
+  UI->>GOL_service: load_board(board_id)
+  GOL_service->>grid_repository: get_grid_by_id(board_id)
+  grid_repository-->>GOL_service: board
+  GOL_service->>GOL_service: self._board = board
+  UI->>UI: root.destroy()
+  UI->>engine: game_engine.start()
+```
+
+### Kartan manipulointi
+
+```mermaid
+sequenceDiagram
+  actor Käyttäjä
+  participant engine
+  participant GOL_service
+  participant Board
+  Käyttäjä->>engine: click cell
+  engine->>GOL_service: manipulate_board(x, y)
+  GOL_service->>Board: self._board.manipulate(x, y)
 
 ### Muut toiminnallisuudet
 

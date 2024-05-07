@@ -1,7 +1,7 @@
 import pygame
 import pygame_widgets
 from game_objects.button import Button
-from game_objects.speed_slider import Speed_Slider
+from game_objects.speed_slider import SpeedSlider
 from services import gol_service
 
 
@@ -50,7 +50,7 @@ class Engine:
     _int_offset : Vector2
         the offset for the internal surface
 
-    _slider : Speed_Slider
+    _slider : SpeedSlider
         the speed slider object
 
     _pause_button : Button
@@ -137,7 +137,7 @@ class Engine:
         )
         pygame.display.set_caption(gol_service.board().get_grid()["name"])
 
-        self._slider = Speed_Slider(self._screen)
+        self._slider = SpeedSlider(self._screen)
         self._pause_button = Button(
             self._screen,
             40,

@@ -4,6 +4,9 @@ from ui.ui import UI
 
 
 def main():
+    '''
+    The main loop of the program.
+    '''
     window = Tk()
     window.geometry('500x500')
     window.title("Game of life")

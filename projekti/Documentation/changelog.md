@@ -20,3 +20,8 @@
 - Lisätty hieman dokumentaatiota.
 - Seuraavaksi / seuraavalla viikolla ois tarkotus kirjottaa docstringit ja dokumentaatio sekä hioa vielä load view näkymä
 - Siinä on kanssa semmone bugi ettei lataa sitä karttaa minkä klikkaa, mutta sen syytä en oo oikein vielä paikottanu.
+
+## Viikko 6
+- En siis tehny mitään
+
+## Viikko 7

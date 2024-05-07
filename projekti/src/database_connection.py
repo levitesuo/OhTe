@@ -9,8 +9,10 @@ test_connection.row_factory = sqlite3.Row
 
 
 def get_database_connection():
+    '''Returns a connection to the database.'''
     return connection
 
 
 def get_test_connection():
+    '''Returns a connection to the test database.'''
     return test_connection

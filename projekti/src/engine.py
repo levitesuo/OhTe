@@ -6,6 +6,98 @@ from services import gol_service
 
 
 class Engine:
+    '''
+    A class for the game engine and pygame visualization.
+
+    Attributes
+    ----------
+    _clock : Clock
+        the clock object for the game
+
+    _speed : int
+        the speed of the game
+
+    _counter : int
+        a counter for the speed of the game
+
+    _pause : bool
+        a boolean for the pause state of the game
+
+    _screen : Surface
+        the screen of the game
+
+    _screen_size : Vector2
+        the size of the screen
+
+    _mouse_pos : Vector2
+        the position of the mouse
+
+    _cell_size : int
+        the size of the cells in the grid
+
+    _offsets : Vector2
+        the offsets for the grid rendering
+
+    _zoom_scale : float
+        the scale of the zoom
+
+    _int_surf_size : Vector2
+        the size of the internal surface
+
+    _int_surf : Surface
+        the internal surface for rendering
+
+    _int_offset : Vector2
+        the offset for the internal surface
+
+    _slider : Speed_Slider
+        the speed slider object
+
+    _pause_button : Button
+        the pause button object
+
+    _step_button : Button
+        the step button object
+
+    _menu_button : Button
+        the menu button object
+
+    _save_button : Button
+        the save button object
+
+    Methods
+    -------
+    start()
+        Starts the game engine.
+
+    _init_screen()
+        Initializes the screen, buttons and sliders.
+
+    _loop()
+        The main loop of the game.
+
+    _speed_handler()
+        Handles the speed of the game.
+
+    _check_events(events)
+        Checks the events for the game.
+
+    _handle_click()
+        Handles the click events.
+
+    _toggle_pause()
+        Toggles the pause state of the game.
+
+    _offset_handler()
+        Handles the offsets of the grid.
+
+    _limit_offset(limit)
+        Limits the offset of the grid.
+
+    _render_grid()
+        Renders the grid.
+    '''
+
     def __init__(self):
         self._clock = None
         self._speed = 0
@@ -30,6 +122,9 @@ class Engine:
         self._save_button = None
 
     def start(self):
+        '''
+        Starts the game engine.
+        '''
         pygame.init()
         self._pause = True
         self._clock = pygame.time.Clock()

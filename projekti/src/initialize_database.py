@@ -2,6 +2,7 @@ from database_connection import get_database_connection, get_test_connection
 
 
 def create_tables(connection):
+    '''Creates the tables neccessary for the application to function.'''
     cursor = connection.cursor()
     cursor.execute("""
                    CREATE TABLE users (
@@ -26,6 +27,7 @@ def create_tables(connection):
 
 
 def drop_tables(connection):
+    '''Drops the tables from the database.'''
     cursor = connection.cursor()
     cursor.execute("""
                    DROP TABLE IF EXISTS users;
@@ -38,6 +40,7 @@ def drop_tables(connection):
 
 def initialize_database():  # pragma: no cover
     '''
+    Initializes the database by dropping the tables and creating them again.
     This function is ommited from coverage becouse we don't want to run tests on the actual database.
     '''
 
@@ -48,6 +51,10 @@ def initialize_database():  # pragma: no cover
 
 
 def initialize_test_database():
+    '''
+    Initializes the database by dropping the tables and creating them again.
+    Test database is used for testing purposes.
+    '''
 
     connection = get_test_connection()
 

@@ -41,7 +41,8 @@ def drop_tables(connection):
 def initialize_database():  # pragma: no cover
     '''
     Initializes the database by dropping the tables and creating them again.
-    This function is ommited from coverage becouse we don't want to run tests on the actual database.
+    This function is ommited from coverage.
+    We don't want to run tests on the actual database.
     '''
 
     connection = get_database_connection()
@@ -63,5 +64,5 @@ def initialize_test_database():
 
 
 if __name__ == "__main__":  # pragma: no cover
-    ''' Omited from coverage'''
+    # Omited from coverage
     initialize_database()

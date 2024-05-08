@@ -38,10 +38,12 @@ class GOLService:
     Methods
     -------
     register_user(username, password)
-        Registers a new user with the given username and password. Raises an error if the username already exists.
+        Registers a new user with the given username and password. 
+        Raises an error if the username already exists.
 
     login(username, password)
-        Logs in a user with the given username and password. Raises an error if the username or password is incorrect.
+        Logs in a user with the given username and password. 
+        Raises an error if the username or password is incorrect.
 
     logout()
         Logs out the current user. Logs in the guest user.
@@ -86,7 +88,8 @@ class GOLService:
 
     def register_user(self, username, password):
         '''
-        Registers a new user with the given username and password. Raises an error if the username already exists.
+        Registers a new user with the given username and password. 
+        Raises an error if the username already exists.
 
         Parameters
         ----------
@@ -102,7 +105,7 @@ class GOLService:
             if the username already exists
         '''
         user_exists = self._user_repository.find_by_username(username)
-        if not (user_exists is None):
+        if user_exists is not None:
             raise UsernameExistsError(f"Username {username} already exists")
         user = User(username, password)
         self._user_repository.register_user(user)
@@ -110,7 +113,8 @@ class GOLService:
 
     def login(self, username, password):
         '''
-        Logs in a user with the given username and password. Raises an error if the username or password is incorrect.
+        Logs in a user with the given username and password. 
+        Raises an error if the username or password is incorrect.
 
         Parameters
         ----------

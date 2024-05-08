@@ -41,10 +41,10 @@ class Button:
     '''
     # Tämän luokan kirjoittamiseen on käytety apuna copilottia
 
-    def __init__(self, screen, x, y, width, height, color, text):
+    def __init__(self, screen, position, width, height, color, text):
         self._screen = screen
-        self._pos = (x, y)
-        self._rect = pygame.Rect(x, y, width, height)
+        self._pos = position
+        self._rect = pygame.Rect(position[0], position[1], width, height)
         self._color = color
         self._text = text
 

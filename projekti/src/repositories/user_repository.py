@@ -52,7 +52,8 @@ class UserRepository:
         Returns
         -------
         User
-            the user object fetched from the database as User object. If the user does not exist, returns None.
+            the user object fetched from the database as User object. 
+            If the user does not exist, returns None.
         '''
         cursor = self._connection.cursor()
 

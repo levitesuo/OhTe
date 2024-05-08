@@ -140,8 +140,8 @@ class Engine:
         self._slider = SpeedSlider(self._screen)
         self._pause_button = Button(
             self._screen,
-            40,
-            self._screen_size.y - 60,
+            (40,
+             self._screen_size.y - 60),
             100,
             50,
             (200, 100, 100),
@@ -149,8 +149,8 @@ class Engine:
         )
         self._step_button = Button(
             self._screen,
-            self._screen_size.x - 140,
-            self._screen_size.y - 60,
+            (self._screen_size.x - 140,
+             self._screen_size.y - 60),
             100,
             50,
             (100, 100, 200),
@@ -158,8 +158,8 @@ class Engine:
         )
         self._menu_button = Button(
             self._screen,
-            40,
-            10,
+            (40,
+             10),
             100,
             50,
             (100, 50, 150),
@@ -167,8 +167,8 @@ class Engine:
         )
         self._save_button = Button(
             self._screen,
-            self._screen_size.x - 140,
-            10,
+            (self._screen_size.x - 140,
+             10),
             100,
             50,
             (100, 50, 150),

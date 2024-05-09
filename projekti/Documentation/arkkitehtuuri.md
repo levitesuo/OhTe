@@ -64,7 +64,7 @@ Pygamepohjaisessa game_engine luokassa on ollut pakko sotkea hieman toiminnallis
       }
 ```
 
-TOiminnallisista kokonaisuuksista vastaa luokka GOLService josta löytyy kaikille UI:n ja enginen pääfunktioille omat metodit. Tällä oliolla saavutetaan myös tiedonsiirto UI:n ja enginen välillä.
+Toiminnallisista kokonaisuuksista vastaa luokka GOLService josta löytyy kaikille UI:n ja enginen pääfunktioille omat metodit. Tällä oliolla saavutetaan myös tiedonsiirto UI:n ja enginen välillä. Käytännössä kaikki käyttöliittymät ovat portaaleita joiden kautta käyttäjä manipuloi GOLServices olion atribuutteja.
 
 ## Tietojen pysyväistallennus
 

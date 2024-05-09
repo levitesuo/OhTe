@@ -25,3 +25,5 @@
 - En siis tehny mitään
 
 ## Viikko 7
+- Korjasin bugin joka oli karttojen lataamisessa.
+- Kirjoitan loput dokumentaatiot

@@ -10,10 +10,10 @@ Testatessa luokkia GridRepository, UserRepository  sekä GOLService on luokille 
 
 ## Testikattavuus
 
-![Kuva](https://github.com/levitesuo/OhTe/blob/main/projekti/Documentation/coverage-report.png)
+![Kuva](https://github.com/levitesuo/OhTe/blob/main/projekti/Documentation/Kuvat/coverage-report.png)
 
 Testauksen ulkopuolelle jäi engine.py, build.py sekä initialize_database.py.
 
 ## Järjestelmätestaus
 
-Sovelluksen järjestelmätestaus on suoritettu manuaalisesti. On varmistettu että kaikki toiminnallisuus listattu määrittelydokumentissa toimii halutulla tavalla. Tämä on tehty käyttöohjeen antamien ohjeiden mukaisesti.
+Sovelluksen järjestelmätestaus on suoritettu manuaalisesti. On varmistettu että kaikki toiminnallisuus listattu määrittelydokumentissa toimii halutulla tavalla. Tämä on tehty käyttöohjeen mukaan.

@@ -50,7 +50,7 @@ Klikkaamalla New Map pääset kartanluonti valikkoon josta voit valita kartan ko
 
 Voit liikkua pelinäkymässä käyttämällä `AWSD` nappeja ja zoomata sisään tai ulos käyttämällä hiiren rullaa. Neliötä klikkaamalla muutat sen tilaa. Klikkaamalla `Step` siirrät simulaatiota yhden askeleen eteenpäin ja klikkaamalla `Start`/`Pause` pystyt hallita simulaation etenemistä. `Slider` jonka näät ruudun alareunassa hallitsee simulaation nopeutta Start tilassa. Starttia ja Stoppia pystyy hallitsemaan myös `välilyönnillä`.
 
-Klikkaamalla `Save` kartan tilanne tallentuu. Jos kartan nimellä on jo tallennettu toinen kartta tallentuu kartta nimellä kartan_nimi COPY. ( Tässä on pieni suunnittelu virhe jos kartalla "testi", joka on tallennettu klikataan useita kertoja `Save` nappia tallentuu kaikki nämä kartat nimellä "testi CPOPY" )
+Klikkaamalla `Save` kartan tilanne tallentuu. Jos kartan nimellä on jo tallennettu toinen kartta tallentuu kartta nimellä kartan_nimi COPY. ( Tässä on pieni suunnittelu virhe jos kartalla "testi", joka on tallennettu klikataan useita kertoja `Save` nappia tallentuu kaikki nämä kartat nimellä "testi COPY" )
 
 Klikkaamalla `Menu` pääset takaisin valikko näkymään.
 

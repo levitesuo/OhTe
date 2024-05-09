@@ -26,3 +26,16 @@ class TestLoginRegister(unittest.TestCase):
         self.service.login(self.user2.username, self.user2.password)
         self.assertEqual(self.user2.get_user_info(),
                          self.service.user().get_user_info())
+
+    def test_fail_to_login_user_service(self):
+        with self.assertRaises(Exception):
+            self.service.login("Pasi", "Pasi")
+
+    def test_fail_to_register_user_service(self):
+        with self.assertRaises(Exception):
+            self.service.register_user(
+                self.user2.username, self.user2.password)
+
+    def test_register_user_service_empty_input(self):
+        with self.assertRaises(Exception):
+            self.service.register_user("", "")

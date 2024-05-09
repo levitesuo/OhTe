@@ -16,6 +16,10 @@ class UsernameExistsError(Exception):
     pass
 
 
+class EmptyInputError(Exception):
+    pass
+
+
 class GOLService:
     '''
     A class to handle the game of life logic and user interaction.
@@ -83,8 +87,7 @@ class GOLService:
         self._board = None
         self._grid_repository = grid_repository
         self._user_repository = user_repository
-        if self._user is None:
-            self.login("Guest", "Guest")
+        self.login("Guest", "Guest")
 
     def register_user(self, username, password):
         '''
@@ -104,6 +107,9 @@ class GOLService:
         UsernameExistsError
             if the username already exists
         '''
+        if not username or not password:
+            raise EmptyInputError("Username and password must not be empty")
+
         user_exists = self._user_repository.find_by_username(username)
         if user_exists is not None:
             raise UsernameExistsError(f"Username {username} already exists")
@@ -152,6 +158,8 @@ class GOLService:
         name : str
             the name of the board
         '''
+        if not size or not name:
+            raise EmptyInputError("Size and name must not be empty")
         self._board = Board(int(size.split("x")[0]), name)
 
     def save_board(self):

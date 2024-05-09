@@ -7,3 +7,4 @@ __pycache__
 htmlcov
 *.py[cod]
 *$py.class
+.env

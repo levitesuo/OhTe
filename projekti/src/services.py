@@ -20,6 +20,10 @@ class EmptyInputError(Exception):
     pass
 
 
+class BoardExistsError(Exception):
+    pass
+
+
 class GOLService:
     '''
     A class to handle the game of life logic and user interaction.
@@ -160,6 +164,9 @@ class GOLService:
         '''
         if not size or not name:
             raise EmptyInputError("Size and name must not be empty")
+        board = self._grid_repository.get_grid_by_name(name)
+        if board:
+            raise BoardExistsError(f"Board with name {name} already exists")
         self._board = Board(int(size.split("x")[0]), name)
 
     def save_board(self):

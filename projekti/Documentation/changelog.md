@@ -26,4 +26,5 @@
 
 ## Viikko 7
 - Korjasin bugin joka oli karttojen lataamisessa.
+- Lisätty erroreita tyhjille syöttökentille.
 - Kirjoitan loput dokumentaatiot

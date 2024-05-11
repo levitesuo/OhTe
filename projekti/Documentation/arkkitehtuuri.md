@@ -78,6 +78,8 @@ Alla on kuvattu sovelluksen päätoiminnallisuutta sekvenssikaaviona.
 
 ### Käyttäjän kirjaantuminen
 
+Kun käyttäjä kirjautuu sovellukseen UI kutsuu GOL_services metodia login joka kutsuu UserRepository metodia find_by_username. Jos jälkimmäinen metodi palauttaa None ohjelma ilmoittaa käyttäjälle errorilla että käyttäjänimi tai salasana ei ole oikein. Jos käyttäjä löytyy GOL_services metodi tarkistaa että salasana vastaa ja kirjaa käyttäjän sisään. Jonka jälkeen UI vaihtaa näkymää login näytöstä main_view:ksi.
+
 
 ```mermaid
 sequenceDiagram
@@ -96,6 +98,7 @@ sequenceDiagram
 
 ### Uuden käyttäjän luominen
 
+Kun käyttäjä luodaa UI kutsuu GOL_services metodia register_user joka ensin tarkistaa metodilla find_by_username ettei käyttäjä ole jo olemassa. Tämän jälkeen käyttäjä luodaan metodialla register_user ja käyttäjä kirjataan sisään. Lopuksi UI vaihtaa vielä näkymään register_view:sta main_view:hin.
 
 ```mermaid
 sequenceDiagram
@@ -118,6 +121,8 @@ sequenceDiagram
 
 ### Kartan luominen
 
+Kun karttaja luo kartan kutsuu UI GOL_services metodia create_board joka luo Board olion ja asettaa sen käisteltäväksi boardiksi. Tämän jälkeen UI tuhoaa itsensä ja luo Engine olion joka aloittaa pelinäkymän.
+
 ```mermaid
 sequenceDiagram
   actor Käyttäjä
@@ -126,7 +131,7 @@ sequenceDiagram
   participant board
   participant engine
   Käyttäjä->>UI: click "Create"
-  UI->>GOL_service: create_todo("5X5", "matin_kartta")
+  UI->>GOL_service: create_board("5X5", "matin_kartta")
   GOL_service->>board: Board(size=5, name="matin_kartta")
   GOL_service->>GOL_service: self._board = board
   UI->>UI: root.destroy()
@@ -134,6 +139,8 @@ sequenceDiagram
 ```
 
 ### Kartan tallennus
+
+Kun käyttäjä klikkaa save nappia pelinäkymässä kutsuu se GOL_services metodia save_board joka lähettää tämänhetkiset käyttäjä ja board tiedot grid_repositorylle joka tallentaa ne tietokantaan.
 
 ```mermaid
 sequenceDiagram
@@ -147,6 +154,8 @@ sequenceDiagram
 ```
 
 ### Kartan lataaminen
+
+Kun kartta ladataan UI kutsuu load_board metodia varustettuna kyseisen boardin id:llä. GOL_services kutsuu repositoryn metodia get_grid_by_id joka palauttaa Board objektin ja tämä asetetaan GOL_servicessa self._boardiksi elikkä tämän hetkiseksi boardiksi.
 
 ```mermaid
 sequenceDiagram
@@ -165,6 +174,8 @@ sequenceDiagram
 ```
 
 ### Kartan manipulointi
+
+Kun käyttäjä klikkaa ruutua pelinäkymässä transponoi engine ensiksi koordinaatit näytön x y pikseli koordinaateista pelilaudan x y koordinaateiksi ja sen jälkeen kutsuu GOL_services metodia manipulate_board joka kutsuu self._board:in metodia manipulate.
 
 ```mermaid
 sequenceDiagram

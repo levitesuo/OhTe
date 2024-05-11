@@ -1,6 +1,12 @@
 # Käyttöohje
 
-Lataa projektin viimeisin versio valitsemalla releasseista uusin versio. 
+Lataa projektin viimeisin versio valitsemalla releasseista uusin versio. Ja pura se haluaamaasi kansioon.
+
+Vaihtoehtoisesti käytä komentoa
+
+```sh
+git clone https://github.com/levitesuo/OhTe
+```
 
 ## Konfiguraatio
 
